@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Chassi.API.Projeto.Controllers
+namespace Chassi.API.Projeto.Controllers.V2
 {
     [ApiController]
-    [Route("api/[Controller]")]
+    [ApiVersion("2")]
+    [Route("[controller]/api/v{version:apiVersion}/")]
     public class CalculadoraController : ControllerBase
     {
 
@@ -17,7 +18,7 @@ namespace Chassi.API.Projeto.Controllers
         [HttpGet("sum/{numero1}/{numero2}")]
         public IActionResult Sum(string numero1, string numero2)
         {
-            if (IsNumeric(numero1) && IsNumeric(numero2) )
+            if (IsNumeric(numero1) && IsNumeric(numero2))
             {
                 decimal soma = ConvertDecimal(numero1) + ConvertDecimal(numero2);
                 return Ok(soma.ToString());
@@ -59,7 +60,7 @@ namespace Chassi.API.Projeto.Controllers
         {
             if (IsNumeric(numero1) && IsNumeric(numero2))
             {
-                decimal media = (ConvertDecimal(numero1) + ConvertDecimal(numero2))/2;
+                decimal media = (ConvertDecimal(numero1) + ConvertDecimal(numero2)) / 2;
                 return Ok(media.ToString());
             }
             return BadRequest("Número Inválido!");
@@ -67,7 +68,7 @@ namespace Chassi.API.Projeto.Controllers
         [HttpGet("square-root/{numero1}")]
         public IActionResult SquareRoot(string numero1)
         {
-            if (IsNumeric(numero1) )
+            if (IsNumeric(numero1))
             {
                 var squareRoot = Math.Sqrt((double)ConvertDecimal(numero1));
                 return Ok(squareRoot.ToString());

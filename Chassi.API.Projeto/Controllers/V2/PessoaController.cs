@@ -2,10 +2,11 @@
 using Chassi.API.Projeto.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Chassi.API.Projeto.Controllers
+namespace Chassi.API.Projeto.Controllers.V2
 {
     [ApiController]
-    [Route("api/[Controller]")]
+    [ApiVersion("2")]
+    [Route("[controller]/api/v{version:apiVersion}/")]
     public class PessoaController : ControllerBase
     {
         private readonly ILogger<PessoaController> _logger;
@@ -20,17 +21,17 @@ namespace Chassi.API.Projeto.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_pessoa.BuscarTodos());   
+            return Ok(_pessoa.BuscarTodos());
         }
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
-            Pessoa pessoa = _pessoa.BuscarPorId(id);    
-            if(pessoa == null) { return NotFound();}
+            Pessoa pessoa = _pessoa.BuscarPorId(id);
+            if (pessoa == null) { return NotFound(); }
             return Ok(pessoa);
         }
         [HttpPost]
-        public IActionResult Post([FromBody]Pessoa pessoa)
+        public IActionResult Post([FromBody] Pessoa pessoa)
         {
             if (pessoa == null) { return BadRequest(); }
             return Ok(_pessoa.Incluir(pessoa));

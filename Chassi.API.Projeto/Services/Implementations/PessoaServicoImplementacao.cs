@@ -1,6 +1,7 @@
 ﻿using Chassi.API.Projeto.Model;
 using Chassi.API.Projeto.Model.Context;
 using Chassi.API.Projeto.Services.Interface;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Chassi.API.Projeto.Services.Implementations
 {
@@ -24,7 +25,12 @@ namespace Chassi.API.Projeto.Services.Implementations
         }        
         public Pessoa BuscarPorId(long id)
         {
-            return _context.Pessoas.SingleOrDefault(p => p.Id.Equals(id));
+            var retorno = _context.Pessoas.SingleOrDefault(p => p.Id.Equals(id));
+            if (retorno != null) { 
+                return retorno; 
+            }
+            throw new Exception($"Não encontrado o id {id} requisitado.");
+
         }
         public Pessoa Incluir(Pessoa pessoa)
         {
