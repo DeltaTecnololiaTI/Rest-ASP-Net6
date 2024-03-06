@@ -1,5 +1,5 @@
 ﻿using Chassi.API.Projeto.Model;
-using Chassi.API.Projeto.Business.Interface;
+using Chassi.API.Projeto.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Chassi.API.Projeto.Controllers.V1
@@ -10,10 +10,10 @@ namespace Chassi.API.Projeto.Controllers.V1
     public class PessoaController : ControllerBase
     {
         private readonly ILogger<PessoaController> _logger;
-        private readonly IPessoaBusiness _pessoa;
+        private readonly IPessoaService _pessoa;
 
         public PessoaController(ILogger<PessoaController> logger,
-                                IPessoaBusiness pessoa)
+                                IPessoaService pessoa)
         {
             _logger = logger;
             _pessoa = pessoa;

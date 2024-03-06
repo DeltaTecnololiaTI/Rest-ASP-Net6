@@ -66,7 +66,7 @@ namespace Chassi.API.Projeto.Config.Swagger
                 Contact = new OpenApiContact
                 {
                     Name = "Meu email de contato",
-                    Email = "delta.tecnologia.ti@gmail.com"
+                    Email = "mailto:delta.tecnologia.ti@gmail.com"
                 },
                 License = new OpenApiLicense
                 {

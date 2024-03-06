@@ -1,19 +1,15 @@
-using Chassi.API.Projeto.Business.Implementations;
-using Chassi.API.Projeto.Business.Interface;
 using Chassi.API.Projeto.Config.ApiVersion;
 using Chassi.API.Projeto.Config.Swagger;
 using Chassi.API.Projeto.Model.Context;
-using Chassi.API.Projeto.Repository.Implementations;
-using Chassi.API.Projeto.Repository.Interface;
+using Chassi.API.Projeto.Services.Implementations;
+using Chassi.API.Projeto.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<IPessoaRepository, PessoaRepositoryImplementacao>();
-builder.Services.AddScoped<IPessoaBusiness, PessoaBusinessImplementacao>();
-
+builder.Services.AddScoped<IPessoaService, PessoaServicoImplementacao>();
 var connection = builder.Configuration["MySQLConnection:MySQLConnectionString"];
 builder.Services.AddDbContext<MySqlContext>(options => options.UseMySql
                                                 (connection,
